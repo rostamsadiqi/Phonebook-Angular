@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+.wrapper {
+    position: relative;
+    min-height: 100vh !important;
+    display: block !important;
+    /* padding-bottom: -80px; */
+ 
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%) !important;
+}
+
+.m-color {
+    color: #0862a0 !important;
+}
+
+.bg-color {
+    background: #0862a0 !important;
+}
+
+.fas:hover, .fab:hover, .far:hover {
+    cursor: pointer !important;
+}
+
+.alert {
+    padding: 2px 5px !important;
+}

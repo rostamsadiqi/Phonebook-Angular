@@ -1,0 +1,19 @@
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.fas {
+  font-size: 20px;
+}
+
+.title {
+  font-size: 25px;
+}
+
+.form-select:focus,
+.form-control:focus {
+  box-shadow: none;
+}

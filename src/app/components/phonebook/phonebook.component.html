@@ -1,0 +1,133 @@
+<div class="container my-5 p-5 shadow">
+  <div class="row">
+    <div class="col-12 pb-3">
+      <span class="m-color title"> Phoonebook List</span>
+
+      <span class="m-color float-end pt-2"><i class="fas fa-plus" data-bs-toggle="modal"
+          data-bs-target="#addContact"></i></span>
+    </div>
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="m-color">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Mobile Number</th>
+              <th scope="col">Phone Type</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pbook of phonebookList; index as i">
+              <td>{{ i + 1 }}</td>
+              <td>{{ pbook.firstName }}</td>
+              <td>{{ pbook.lastName }}</td>
+              <td>{{ pbook.mobile }}</td>
+              <td>{{ pbook.phoneType }}</td>
+              <td>
+                <i class="far fa-edit pe-3 text-primary" data-bs-toggle="modal" data-bs-target="#addContact"
+                  (click)="updatePhonebook(pbook)"></i>
+                <i class="far fa-trash-alt text-danger" (click)="onDeletePhonebook(pbook)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="addContactModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ modelTitle }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form -->
+        <form [formGroup]="phonebookForm">
+          <div class="form-group">
+            <label for="first-name" class="col-form-label">First Name</label>
+            <input type="text" class="form-control onlyAlphabet" formControlName="firstName" required />
+
+            <div class="alert alert-danger" *ngIf="
+                f.firstName.invalid &&
+                (f.firstName.dirty || f.firstName.touched)
+              ">
+              <small class="text-danger" *ngIf="f.firstName.errors?.required">
+                First Name is required
+              </small>
+              <small class="text-danger" *ngIf="f.firstName.errors?.minlength">
+                First Name must be at least 3 characters long.
+              </small>
+              <small class="text-danger" *ngIf="f.firstName.errors?.pattern">
+                First Name must be only Alphabet
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="last-name" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control onlyAlphabet" formControlName="lastName" required />
+            <div class="alert alert-danger" *ngIf="
+                f.lastName.invalid && (f.lastName.dirty || f.lastName.touched)
+              ">
+              <small class="text-danger" *ngIf="f.lastName.errors?.required">
+                Last Name is required
+              </small>
+              <small class="text-danger" *ngIf="f.lastName.errors?.minlength">
+                Last Name must be at least 3 characters long.
+              </small>
+              <small class="text-danger" *ngIf="f.lastName.errors?.pattern">
+                Last Name must be only Alphabet
+              </small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Number" class="col-form-label">Mobile Number</label>
+            <input type="text" class="form-control onlyNumbers noSpace" formControlName="mobile" autocomplete="off"
+              required />
+
+            <div class="alert alert-danger" *ngIf="f.mobile.invalid && (f.mobile.dirty || f.mobile.touched)">
+              <small class="text-danger" *ngIf="f.mobile.errors?.required">
+                Mobile Number is required
+              </small>
+              <small class="text-danger" *ngIf="f.mobile.errors?.minlength">
+                Mobile Number must be at least 8 characters long.
+              </small>
+              <small class="text-danger" *ngIf="f.mobile.errors?.pattern">
+                Mobile Number must be only number
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Number" class="col-form-label">Phone Type</label>
+            <select class="form-select" formControlName="phoneType">
+              <option *ngFor="let pt of phonebookOption; index as i" value="{{ pt }}">
+                {{ pt }}
+              </option>
+            </select>
+          </div>
+        </form>
+        <!-- end Form -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="addPhonebook()" *ngIf="isAdd"
+          [disabled]="phonebookForm.invalid">
+          Save
+        </button>
+        <button type="button" class="btn btn-primary" (click)="updatePhonebookDetails()" *ngIf="isEdit" [disabled]="phonebookForm.invalid">
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
