@@ -5,6 +5,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # Run JSON Server on port 5000
 json-server --watch db.json --port 5000
 
+# Main Page
+
+![Screenshot 2021-08-12 at 18-42-04 Phonebook](https://user-images.githubusercontent.com/29424325/129184366-252b2405-a9ff-465f-bfc4-dd111dcb6676.png)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
